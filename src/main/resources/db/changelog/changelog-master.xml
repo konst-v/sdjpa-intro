@@ -9,4 +9,5 @@
     <include file="db/changelog/baseline-changelog.xml"/>
     <include file="db/changelog/init-hibernate.xml"/>
     <include file="db/changelog/author-changeset.xml"/>
+    <include file="db/changelog/add-author-id-to-book.xml"/>
 </databaseChangeLog>
