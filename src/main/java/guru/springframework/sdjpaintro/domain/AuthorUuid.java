@@ -1,24 +1,26 @@
 package guru.springframework.sdjpaintro.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
-public class Author {
+public class AuthorUuid {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Column(length = 36, columnDefinition = "varchar2(36)", updatable = false, nullable = false)
+    private UUID id;
 
     private String firstName;
     private String lastName;
 
-    public Author() {
+    public AuthorUuid() {
     }
 
-    public Author(String firstName, String lastName) {
+    public AuthorUuid(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -28,7 +30,7 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        AuthorUuid author = (AuthorUuid) o;
 
         return Objects.equals(id, author.id);
     }
@@ -38,11 +40,11 @@ public class Author {
         return id != null ? id.hashCode() : 0;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
